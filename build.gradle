@@ -30,7 +30,7 @@ dependencies {
 }
 
 //TODO: change to your userid
-def user = 'DWALKE30'
+def user = 'JLUANGNI'
 
 task packageDistribution(type: Zip) {
     doFirst{
