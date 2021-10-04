@@ -1,11 +1,10 @@
-/**
-  * SE 350 Fall 2021
-  * Jawan Luangnikone Davis
-  * Project Assignment 1: Sprint 1
-  * 10/5/2021
-*/
+/*
+  SE 350 Fall 2021
+  Jawan Luangnikone Davis
+  Project Assignment 1: Sprint 1
+  10/5/2021
+ */
 package controller.command;
-
 
 import controller.interfaces.ICommand;
 import model.interfaces.UserChoices;
@@ -16,7 +15,14 @@ import model.interfaces.IShape;
 import model.picture.Rectangle;
 import view.gui.PaintCanvas;
 
-
+/**
+ * The CreateShapesCommand class implements the interfaces for ICommand and IUndoable.
+ * (@see controller.interfaces.ICommand)
+ * The class takes an input of two Point objects, a UserChoices object, a Picture object,
+ * and a PaintCanvas object. In its run method it creates a new shape and adds it to Picture.
+ * In the class's redo and undo methods, it interacts with the Picture and calls the
+ * PaintCanvas object to repaint the graphics.
+ */
 public class CreateShapesCommand implements ICommand, Undoable {
   IShape shape;
   Point start;

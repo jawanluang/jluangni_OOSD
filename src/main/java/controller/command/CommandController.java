@@ -1,8 +1,8 @@
-/**
- * SE 350 Fall 2021
- * Jawan Luangnikone Davis
- * Project Assignment 1: Sprint 1
- * 10/5/2021
+/*
+  SE 350 Fall 2021
+  Jawan Luangnikone Davis
+  Project Assignment 1: Sprint 1
+  10/5/2021
  */
 package controller.command;
 
@@ -13,11 +13,17 @@ import model.picture.Picture;
 import model.picture.Point;
 import view.gui.PaintCanvas;
 
+/**
+ * The CommandController class takes an input of a UserChoices object, a Picture object, and
+ * a PaintCanvas object. The purpose of the class is to take the input and run the necessary
+ * command that is chosen. After creating a command and running it, the command is added into
+ * CommandHistory's undo stack.
+ */
 public class CommandController {
   private ICommand command;
-  private UserChoices userChoices;
-  private Picture picture;
-  private PaintCanvas paintCanvas;
+  private final UserChoices userChoices;
+  private final Picture picture;
+  private final PaintCanvas paintCanvas;
 
   public CommandController(UserChoices userChoices, Picture picture, PaintCanvas paintCanvas) {
     this.userChoices = userChoices;

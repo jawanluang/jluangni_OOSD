@@ -1,11 +1,17 @@
-/**
- * SE 350 Fall 2021
- * Jawan Luangnikone Davis
- * Project Assignment 1: Sprint 1
- * 10/5/2021
- */
+/*
+  SE 350 Fall 2021
+  Jawan Luangnikone Davis
+  Project Assignment 1: Sprint 1
+  Topic: Rectangle and Undo & Redo
+*/
+
 package model.picture;
 
+/**
+ * The Point class takes two integers as an input and stores the data for other classes
+ * to call on the getter methods. This class interacts with the MouseHandler to store
+ * mouse coordinates that is later provided to the Shapes
+ */
 public class Point {
   private int xCoordinate;
   private int yCoordinate;

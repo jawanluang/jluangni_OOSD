@@ -8,8 +8,9 @@ import org.slf4j.LoggerFactory;
 
 /**
  * PaintCanvas is responsible for responding to the graphics system when it
- * is time to update the display.  This is a boundary class so very little code
- * should be added here.
+ * is time to update the display. It takes a Picture as an input and utilizes
+ * the object to render shapes in the graphics system. This is a boundary class
+ * so very little code should be added here.
  */
 public class PaintCanvas extends JComponent {
     private Picture picture;

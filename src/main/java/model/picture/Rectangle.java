@@ -1,8 +1,8 @@
-/**
- * SE 350 Fall 2021
- * Jawan Luangnikone Davis
- * Project Assignment 1: Sprint 1
- * 10/5/2021
+/*
+  SE 350 Fall 2021
+  Jawan Luangnikone Davis
+  Project Assignment 1: Sprint 1
+  10/5/2021
  */
 package model.picture;
 
@@ -12,6 +12,13 @@ import java.awt.Graphics2D;
 import model.interfaces.IShape;
 import model.interfaces.UserChoices;
 
+/**
+ * This class implements the IShape interface and follows the abstract methods presented.
+ * (@see model.interfaces.IShape)
+ * The Rectangle class takes two Point objects and a UserChoices object as an input. Using the
+ * Point objects to create an origin and dimensions for the shape. With the UserChoices object,
+ * the class extracts the primary and secondary color of the shape.
+ */
 public class Rectangle implements IShape{
   int height, width;
   Point begin;
