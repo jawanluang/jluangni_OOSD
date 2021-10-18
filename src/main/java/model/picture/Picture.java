@@ -27,8 +27,26 @@ public class Picture {
     shapesContainer.remove(oldShape);
   }
 
+  public void select(ArrayList<IShape> selectedShapes) {
+    if (selectContainer.isEmpty()) {
+      selectContainer.addAll(selectedShapes);
+    } else {
+      selectContainer.clear();
+      selectContainer.addAll(selectedShapes);
+    }
+  }
+
+  public ArrayList<IShape> getSelectShapes() {
+    return selectContainer;
+  }
+
   public void draw(Graphics2D graphics2D) {
     for (IShape iShape : shapesContainer)
       iShape.draw(graphics2D);
+  }
+
+  public void selection(Graphics2D graphics2D) {
+    for (IShape iShape : selectContainer)
+      iShape.select(graphics2D);
   }
 }

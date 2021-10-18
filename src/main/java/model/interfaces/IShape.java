@@ -16,4 +16,5 @@ import java.awt.Graphics2D;
 public interface IShape {
   void draw (Graphics2D graphics);
   void select (Graphics2D graphics);
+  void move(int x, int y);
 }

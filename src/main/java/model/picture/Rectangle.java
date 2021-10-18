@@ -49,4 +49,11 @@ public class Rectangle implements IShape{
     graphics.setColor(Color.BLACK);
     graphics.drawRect(begin.getX() - 5, begin.getY() - 5, width + 10, height + 10);
   }
+
+  @Override
+  public void move(int x, int y) {
+    int newX = begin.getX() + x;
+    int newY = begin.getY() + y;
+    begin = new Point(newX, newY);
+  }
 }
