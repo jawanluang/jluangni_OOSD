@@ -17,6 +17,7 @@ import model.interfaces.IShape;
  */
 public class Picture {
   private final ArrayList<IShape> shapesContainer = new ArrayList<>();
+  private final ArrayList<IShape> selectContainer = new ArrayList<>();
 
   public void add(IShape newShape){
     shapesContainer.add(newShape);

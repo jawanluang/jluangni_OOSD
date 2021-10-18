@@ -6,7 +6,9 @@
  */
 package model.picture;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Stroke;
 import model.DrawRectangle;
 import java.awt.Graphics2D;
 import model.interfaces.IShape;
@@ -38,5 +40,13 @@ public class Rectangle implements IShape{
   @Override
   public void draw(Graphics2D graphics) {
     new DrawRectangle(graphics, begin, height, width, primaryColor, secondaryColor);
+  }
+
+  @Override
+  public void select(Graphics2D graphics) {
+    Stroke stroke = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0);
+    graphics.setStroke(stroke);
+    graphics.setColor(Color.BLACK);
+    graphics.drawRect(begin.getX() - 5, begin.getY() - 5, width + 10, height + 10);
   }
 }

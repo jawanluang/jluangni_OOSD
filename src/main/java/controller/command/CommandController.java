@@ -32,9 +32,19 @@ public class CommandController {
   }
 
   public void onDraw(Point startPoint, Point endPoint) {
-    command = new CreateShapesCommand(startPoint, endPoint, userChoices, picture, paintCanvas);
+    command = CommandFactory.makeCommand(startPoint, endPoint, userChoices, picture);
     command.run();
     CommandHistory.add((Undoable) command);
+    paintCanvas.repaint();
+  }
+
+  public void onRedo() {
+    CommandHistory.redo();
+    paintCanvas.repaint();
+  }
+
+  public void onUndo() {
+    CommandHistory.undo();
     paintCanvas.repaint();
   }
 }

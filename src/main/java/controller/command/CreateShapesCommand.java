@@ -13,7 +13,6 @@ import model.picture.Point;
 import controller.interfaces.Undoable;
 import model.interfaces.IShape;
 import model.picture.Rectangle;
-import view.gui.PaintCanvas;
 
 /**
  * The CreateShapesCommand class implements the interfaces for ICommand and IUndoable.
@@ -29,14 +28,13 @@ public class CreateShapesCommand implements ICommand, Undoable {
   Point end;
   UserChoices userChoices;
   Picture picture;
-  PaintCanvas paintCanvas;
 
-  public CreateShapesCommand(Point start, Point end, UserChoices userChoices, Picture picture, PaintCanvas paintCanvas) {
+
+  public CreateShapesCommand(Point start, Point end, UserChoices userChoices, Picture picture) {
     this.start = start;
     this.end = end;
     this.userChoices = userChoices;
     this.picture = picture;
-    this.paintCanvas = paintCanvas;
   }
 
   @Override
@@ -48,12 +46,10 @@ public class CreateShapesCommand implements ICommand, Undoable {
   @Override
   public void redo() {
     picture.add(shape);
-    paintCanvas.repaint();
   }
 
   @Override
   public void undo() {
     picture.remove(shape);
-    paintCanvas.repaint();
   }
 }
