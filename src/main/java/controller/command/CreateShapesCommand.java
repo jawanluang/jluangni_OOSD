@@ -12,7 +12,7 @@ import model.picture.Picture;
 import model.picture.Point;
 import controller.interfaces.Undoable;
 import model.interfaces.IShape;
-import model.picture.Rectangle;
+import model.picture.ShapeFactory;
 
 /**
  * The CreateShapesCommand class implements the interfaces for ICommand and IUndoable.
@@ -39,7 +39,7 @@ public class CreateShapesCommand implements ICommand, Undoable {
 
   @Override
   public void run() {
-    shape = new Rectangle(start, end, userChoices);
+    shape = ShapeFactory.makeShape(start, end, userChoices);
     picture.add(shape);
   }
 
