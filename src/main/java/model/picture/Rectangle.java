@@ -23,12 +23,16 @@ import model.interfaces.UserChoices;
  */
 public class Rectangle implements IShape{
   int height, width;
+  Point start;
+  Point end;
   Point begin;
   UserChoices userChoices;
   Color primaryColor;
   Color secondaryColor;
 
   public Rectangle(Point start, Point end, UserChoices userChoices) {
+    this.start = start;
+    this.end = end;
     begin = new Point(Math.min(start.getX(), end.getX()), Math.min(start.getY(), end.getY()));
     height = Math.abs(start.getY() - end.getY());
     width = Math.abs(start.getX() - end.getX());
@@ -43,17 +47,19 @@ public class Rectangle implements IShape{
   }
 
   @Override
-  public void select(Graphics2D graphics) {
-    Stroke stroke = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0);
-    graphics.setStroke(stroke);
-    graphics.setColor(Color.BLACK);
-    graphics.drawRect(begin.getX() - 5, begin.getY() - 5, width + 10, height + 10);
-  }
-
-  @Override
   public void move(int x, int y) {
     int newX = begin.getX() + x;
     int newY = begin.getY() + y;
     begin = new Point(newX, newY);
+  }
+
+  @Override
+  public Point getStart() {
+    return start;
+  }
+
+  @Override
+  public Point getEnd() {
+    return end;
   }
 }

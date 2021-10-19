@@ -7,12 +7,16 @@ import model.interfaces.IShape;
 import model.interfaces.UserChoices;
 
 public class Triangle implements IShape {
+  Point start;
+  Point end;
   Color primaryColor;
   Color secondaryColor;
   int[] xPoints;
   int[] yPoints;
 
   public Triangle(Point start, Point end, UserChoices userChoices) {
+    this.start = start;
+    this.end = end;
     int halfX = (Math.max(start.getX(), end.getX()) - Math.min(start.getX(), end.getX()))/2;
     xPoints = new int[]{Math.min(start.getX(), end.getX()), Math.min(start.getX(), end.getX()) + halfX, Math.max(start.getX(), end.getX())};
     yPoints = new int[]{Math.max(start.getY(), end.getY()), Math.min(start.getY(), end.getY()), Math.max(start.getY(), end.getY())};
@@ -27,15 +31,20 @@ public class Triangle implements IShape {
   }
 
   @Override
-  public void select(Graphics2D graphics) {
-
-  }
-
-  @Override
   public void move(int x, int y) {
     for (int i = 0; i < xPoints.length; i++) {
       xPoints[i] = xPoints[i] + x;
       yPoints[i] = yPoints[i] + y;
     }
+  }
+
+  @Override
+  public Point getStart() {
+    return start;
+  }
+
+  @Override
+  public Point getEnd() {
+    return end;
   }
 }

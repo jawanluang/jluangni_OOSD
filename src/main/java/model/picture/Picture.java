@@ -23,6 +23,10 @@ public class Picture {
     shapesContainer.add(newShape);
   }
 
+  public ArrayList<IShape> getDrawnShapes() {
+    return shapesContainer;
+  }
+
   public void remove(IShape oldShape) {
     shapesContainer.remove(oldShape);
   }
@@ -43,10 +47,5 @@ public class Picture {
   public void draw(Graphics2D graphics2D) {
     for (IShape iShape : shapesContainer)
       iShape.draw(graphics2D);
-  }
-
-  public void selection(Graphics2D graphics2D) {
-    for (IShape iShape : selectContainer)
-      iShape.select(graphics2D);
   }
 }

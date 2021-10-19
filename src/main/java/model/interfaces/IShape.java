@@ -7,6 +7,7 @@
 package model.interfaces;
 
 import java.awt.Graphics2D;
+import model.picture.Point;
 
 /**
  * The IShape interface presents an abstract template for Shape objects to follow.
@@ -15,6 +16,7 @@ import java.awt.Graphics2D;
  */
 public interface IShape {
   void draw (Graphics2D graphics);
-  void select (Graphics2D graphics);
   void move(int x, int y);
+  Point getStart();
+  Point getEnd();
 }

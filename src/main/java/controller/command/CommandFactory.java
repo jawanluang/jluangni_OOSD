@@ -12,7 +12,7 @@ public class CommandFactory {
     if (userChoices.getActiveMouseMode().equals(MouseMode.DRAW)) {
       return new CreateShapesCommand(X, Y, userChoices, picture);
     } else if (userChoices.getActiveMouseMode().equals(MouseMode.SELECT)) {
-      return new SelectCommand();
+      return new SelectCommand(X, Y, picture);
     } else if (userChoices.getActiveMouseMode().equals(MouseMode.MOVE)) {
       return new MoveCommand(X, Y, picture);
     } else {
