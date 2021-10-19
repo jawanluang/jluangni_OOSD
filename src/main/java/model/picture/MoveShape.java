@@ -1,3 +1,9 @@
+/*
+  SE 350 Fall 2021
+  Jawan Luangnikone Davis
+  Project Assignment 2: Sprint 2
+  10/19/2021
+ */
 package model.picture;
 
 import java.util.ArrayList;

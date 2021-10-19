@@ -1,3 +1,9 @@
+/*
+  SE 350 Fall 2021
+  Jawan Luangnikone Davis
+  Project Assignment 2: Sprint 2
+  10/19/2021
+ */
 package controller.command;
 
 import controller.interfaces.ICommand;
@@ -6,6 +12,12 @@ import model.interfaces.UserChoices;
 import model.picture.Picture;
 import model.picture.Point;
 
+/**
+ * The CommandFactory utilizes the factory method design in relation to the classes that implement
+ * the ICommand interface. The class takes in two Point objects, a UserChoices object, and a
+ * Picture object to help fill in the fields for the new commands. It chooses the command made based
+ * on the current ENUM for MouseMode.
+ */
 public class CommandFactory {
 
   public static ICommand makeCommand(Point X, Point Y, UserChoices userChoices, Picture picture) {

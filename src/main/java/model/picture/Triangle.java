@@ -1,3 +1,9 @@
+/*
+  SE 350 Fall 2021
+  Jawan Luangnikone Davis
+  Project Assignment 2: Sprint 2
+  10/19/2021
+ */
 package model.picture;
 
 import java.awt.Color;
@@ -6,6 +12,13 @@ import model.DrawTriangle;
 import model.interfaces.IShape;
 import model.interfaces.UserChoices;
 
+/**
+ * This class implements the IShape interface and follows the abstract methods presented.
+ * (@see model.interfaces.IShape)
+ * The Triangle class takes two Point objects and a UserChoices object as an input. Using the
+ * Point objects to create an array of x-coordinates and y-coordinates. With the UserChoices object,
+ * the class extracts the primary and secondary color of the shape.
+ */
 public class Triangle implements IShape {
   Point start;
   Point end;
@@ -27,7 +40,7 @@ public class Triangle implements IShape {
 
   @Override
   public void draw(Graphics2D graphics) {
-    new DrawTriangle(graphics, xPoints, yPoints, primaryColor, secondaryColor);
+    new DrawTriangle(graphics, xPoints, yPoints, primaryColor);
   }
 
   @Override

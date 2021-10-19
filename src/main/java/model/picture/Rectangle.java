@@ -23,7 +23,6 @@ import model.interfaces.UserChoices;
  */
 public class Rectangle implements IShape{
   int height, width;
-  Point start;
   Point end;
   Point begin;
   UserChoices userChoices;
@@ -31,8 +30,7 @@ public class Rectangle implements IShape{
   Color secondaryColor;
 
   public Rectangle(Point start, Point end, UserChoices userChoices) {
-    this.start = start;
-    this.end = end;
+    this.end = new Point(Math.max(start.getX(), end.getX()), Math.max(start.getY(), end.getY()));
     begin = new Point(Math.min(start.getX(), end.getX()), Math.min(start.getY(), end.getY()));
     height = Math.abs(start.getY() - end.getY());
     width = Math.abs(start.getX() - end.getX());
@@ -55,7 +53,7 @@ public class Rectangle implements IShape{
 
   @Override
   public Point getStart() {
-    return start;
+    return begin;
   }
 
   @Override
