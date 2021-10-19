@@ -23,15 +23,16 @@ public class SelectCommand implements ICommand, Undoable {
 
   @Override
   public void run() {
-    SelectShape selected = new SelectShape(picture);
+    SelectShape selected = new SelectShape();
     RegionImpl region = new RegionImpl(regionX, regionY, picture.getDrawnShapes(), selected);
     region.putSelectedShapes();
+    picture.select(selected.getSelectedShapes());
     selectedShapes = selected.getSelectedShapes();
   }
 
   @Override
   public void undo() {
-    selectedShapes.clear();
+    picture.getSelectShapes().clear();
   }
 
   @Override
