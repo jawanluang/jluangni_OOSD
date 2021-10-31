@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.awt.Stroke;
 import model.DrawRectangle;
 import java.awt.Graphics2D;
+import model.ShapeShadingType;
 import model.interfaces.IShape;
 import model.interfaces.UserChoices;
 
@@ -23,25 +24,28 @@ import model.interfaces.UserChoices;
  */
 public class Rectangle implements IShape{
   int height, width;
+  Color primary;
+  Color secondary;
   Point end;
   Point begin;
   UserChoices userChoices;
-  Color primaryColor;
-  Color secondaryColor;
+  ShapeShadingType sst;
 
   public Rectangle(Point start, Point end, UserChoices userChoices) {
     this.end = new Point(Math.max(start.getX(), end.getX()), Math.max(start.getY(), end.getY()));
     begin = new Point(Math.min(start.getX(), end.getX()), Math.min(start.getY(), end.getY()));
     height = Math.abs(start.getY() - end.getY());
     width = Math.abs(start.getX() - end.getX());
+
     this.userChoices = userChoices;
-    primaryColor = userChoices.getActivePrimaryColor().value;
-    secondaryColor = userChoices.getActiveSecondaryColor().value;
+    primary = userChoices.getActivePrimaryColor().value;
+    secondary = userChoices.getActiveSecondaryColor().value;
+    sst = userChoices.getActiveShapeShadingType();
   }
 
   @Override
   public void draw(Graphics2D graphics) {
-    new DrawRectangle(graphics, begin, height, width, primaryColor, secondaryColor);
+    new DrawRectangle(graphics, begin, height, width, primary, secondary, sst);
   }
 
   @Override

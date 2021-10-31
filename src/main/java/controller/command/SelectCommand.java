@@ -7,7 +7,6 @@
 package controller.command;
 
 import controller.interfaces.ICommand;
-import controller.interfaces.Undoable;
 import java.util.ArrayList;
 import model.RegionImpl;
 import model.interfaces.IShape;
@@ -21,9 +20,9 @@ import model.picture.SelectShape;
  * The SelectCommand class takes in two Point objects and a Picture object. The class uses these fields
  * to create a SelectShape object and a RegionImpl that holds a composition relationship to the class.
  * In the undo method, it gets the picture's selected shapes arraylist and clears it. In the redo
- * method, it inserts the saved list into the picture's selected shapes arraylist.
+ * method, it inserts the saved list into the picture's selected shapes' arraylist.
  */
-public class SelectCommand implements ICommand, Undoable {
+public class SelectCommand implements ICommand {
   Point regionX;
   Point regionY;
   Picture picture;
@@ -42,15 +41,5 @@ public class SelectCommand implements ICommand, Undoable {
     region.putSelectedShapes();
     picture.select(selected.getSelectedShapes());
     selectedShapes = selected.getSelectedShapes();
-  }
-
-  @Override
-  public void undo() {
-    picture.getSelectShapes().clear();
-  }
-
-  @Override
-  public void redo() {
-    picture.select(selectedShapes);
   }
 }

@@ -9,6 +9,7 @@ package model.picture;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import model.DrawTriangle;
+import model.ShapeShadingType;
 import model.interfaces.IShape;
 import model.interfaces.UserChoices;
 
@@ -22,10 +23,12 @@ import model.interfaces.UserChoices;
 public class Triangle implements IShape {
   Point start;
   Point end;
-  Color primaryColor;
-  Color secondaryColor;
+  Color primary;
+  Color secondary;
   int[] xPoints;
   int[] yPoints;
+  UserChoices userChoices;
+  ShapeShadingType sst;
 
   public Triangle(Point start, Point end, UserChoices userChoices) {
     this.start = start;
@@ -34,13 +37,15 @@ public class Triangle implements IShape {
     xPoints = new int[]{Math.min(start.getX(), end.getX()), Math.min(start.getX(), end.getX()) + halfX, Math.max(start.getX(), end.getX())};
     yPoints = new int[]{Math.max(start.getY(), end.getY()), Math.min(start.getY(), end.getY()), Math.max(start.getY(), end.getY())};
 
-    primaryColor = userChoices.getActivePrimaryColor().value;
-    secondaryColor = userChoices.getActiveSecondaryColor().value;
+    this.userChoices = userChoices;
+    primary = userChoices.getActivePrimaryColor().value;
+    secondary = userChoices.getActiveSecondaryColor().value;
+    sst = userChoices.getActiveShapeShadingType();
   }
 
   @Override
   public void draw(Graphics2D graphics) {
-    new DrawTriangle(graphics, xPoints, yPoints, primaryColor);
+    new DrawTriangle(graphics, xPoints, yPoints, primary, secondary, sst);
   }
 
   @Override

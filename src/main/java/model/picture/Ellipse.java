@@ -9,6 +9,7 @@ package model.picture;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import model.DrawEllipse;
+import model.ShapeShadingType;
 import model.interfaces.IShape;
 import model.interfaces.UserChoices;
 
@@ -21,10 +22,13 @@ import model.interfaces.UserChoices;
  */
 public class Ellipse implements IShape {
   int height, width;
+  Color primary;
+  Color secondary;
   Point end;
   Point begin;
-  Color primaryColor;
-  Color secondaryColor;
+  UserChoices userChoices;
+  ShapeShadingType sst;
+
 
   public Ellipse(Point start, Point end, UserChoices userChoices) {
     this.end = new Point(Math.max(start.getX(), end.getX()), Math.max(start.getY(), end.getY()));
@@ -32,13 +36,15 @@ public class Ellipse implements IShape {
     height = Math.abs(start.getY() - end.getY());
     width = Math.abs(start.getX() - end.getX());
 
-    primaryColor = userChoices.getActivePrimaryColor().value;
-    secondaryColor = userChoices.getActiveSecondaryColor().value;
+    this.userChoices = userChoices;
+    primary = userChoices.getActivePrimaryColor().value;
+    secondary = userChoices.getActiveSecondaryColor().value;
+    sst = userChoices.getActiveShapeShadingType();
   }
 
   @Override
   public void draw(Graphics2D graphics) {
-    new DrawEllipse(graphics, begin, height, width, primaryColor);
+    new DrawEllipse(graphics, begin, height, width, primary, secondary, sst);
   }
 
   @Override

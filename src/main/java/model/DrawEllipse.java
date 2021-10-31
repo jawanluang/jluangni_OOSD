@@ -6,9 +6,11 @@
  */
 package model;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
+import model.interfaces.UserChoices;
 import model.picture.Point;
 
 /**
@@ -17,10 +19,38 @@ import model.picture.Point;
  * the primary color.
  */
 public class DrawEllipse {
+  Color primary;
+  Color secondary;
+  Ellipse2D el;
+  ShapeShadingType sst;
 
-  public DrawEllipse (Graphics2D graphics, Point origin, int height, int width, Color primary) {
-    graphics.setColor(primary);
-    Ellipse2D el = new Ellipse2D.Double(origin.getX(), origin.getY(), width, height);
-    graphics.fill(el);
+  public DrawEllipse (Graphics2D graphics, Point origin, int height, int width, Color primary, Color secondary, ShapeShadingType shapeShadingType) {
+    this.primary = primary;
+    this.secondary = secondary;
+    this.sst = shapeShadingType;
+
+    switch (sst) {
+      case FILLED_IN:
+        graphics.setColor(primary);
+        el = new Ellipse2D.Double(origin.getX(), origin.getY(), width, height);
+        graphics.fill(el);
+        break;
+      case OUTLINE:
+        graphics.setColor(secondary);
+        graphics.setStroke(new BasicStroke(5));
+        el = new Ellipse2D.Double(origin.getX(), origin.getY(), width, height);
+        graphics.draw(el);
+        break;
+      case OUTLINE_AND_FILLED_IN:
+        graphics.setColor(primary);
+        el = new Ellipse2D.Double(origin.getX(), origin.getY(), width, height);
+        graphics.fill(el);
+        graphics.setColor(secondary);
+        graphics.setStroke(new BasicStroke(5));
+        graphics.draw(el);
+        break;
+      default:
+        System.out.println("No shape shading type found.");
+    }
   }
 }
