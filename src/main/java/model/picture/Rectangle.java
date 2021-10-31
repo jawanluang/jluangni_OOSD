@@ -58,6 +58,10 @@ public class Rectangle implements IShape{
     begin = new Point(newX, newY);
   }
 
+  public IShape copy() {
+    return new Rectangle(region, userChoices);
+  }
+
   @Override
   public Point getStart() {
     return begin;

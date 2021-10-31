@@ -54,6 +54,10 @@ public class Triangle implements IShape {
     }
   }
 
+  public IShape copy() {
+    return new Triangle(region, userChoices);
+  }
+
   @Override
   public Point getStart() {
     return region.getStartRegion();

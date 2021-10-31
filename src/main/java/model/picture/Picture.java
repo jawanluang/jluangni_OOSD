@@ -18,6 +18,8 @@ import model.interfaces.IShape;
 public class Picture {
   private final ArrayList<IShape> shapesContainer = new ArrayList<>();
   private final ArrayList<IShape> selectContainer = new ArrayList<>();
+  private final ArrayList<IShape> copyContainer = new ArrayList<>();
+  public int pasteIterator = 0;
 
   public void add(IShape newShape){
     shapesContainer.add(newShape);
@@ -40,6 +42,17 @@ public class Picture {
 
   public ArrayList<IShape> getSelectShapes() {
     return selectContainer;
+  }
+
+  public void copy(ArrayList<IShape> selectedShapes) {
+    if (!copyContainer.isEmpty()) {
+      copyContainer.clear();
+    }
+    copyContainer.addAll(selectedShapes);
+  }
+
+  public ArrayList<IShape> getCopiedShapes() {
+    return copyContainer;
   }
 
   public void draw(Graphics2D graphics2D) {

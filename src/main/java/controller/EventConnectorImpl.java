@@ -33,5 +33,7 @@ public class EventConnectorImpl implements EventConnector {
         uiModule.addEvent(EventName.CHOOSE_MOUSE_MODE, () -> userChoices.setActiveStartAndEndPointMode());
         uiModule.addEvent(EventName.UNDO, () -> cmdController.onUndo());
         uiModule.addEvent(EventName.REDO, () -> cmdController.onRedo());
+        uiModule.addEvent(EventName.COPY, () -> cmdController.onCopy());
+        uiModule.addEvent(EventName.PASTE, () -> cmdController.onPaste());
     }
 }

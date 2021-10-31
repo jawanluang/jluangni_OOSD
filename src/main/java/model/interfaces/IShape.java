@@ -19,6 +19,7 @@ import model.picture.Point;
 public interface IShape {
   void draw (Graphics2D graphics);
   void move(int x, int y);
+  IShape copy();
   Point getStart();
   Point getEnd();
 }

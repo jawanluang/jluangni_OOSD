@@ -7,6 +7,7 @@
 package controller.command;
 
 import controller.interfaces.ICommand;
+import controller.interfaces.Undoable;
 import java.util.ArrayList;
 import model.RegionImpl;
 import model.interfaces.IShape;
@@ -23,7 +24,7 @@ import model.picture.SelectShape;
  * In the undo method, it gets the picture's selected shapes arraylist and clears it. In the redo
  * method, it inserts the saved list into the picture's selected shapes' arraylist.
  */
-public class SelectCommand implements ICommand {
+public class SelectCommand implements ICommand, Undoable {
   Region region;
   Picture picture;
   ArrayList<IShape> selectedShapes;
@@ -39,5 +40,15 @@ public class SelectCommand implements ICommand {
     selected.addSelectedShapes();
     picture.select(selected.getSelectedShapes());
     selectedShapes = selected.getSelectedShapes();
+  }
+
+  @Override
+  public void undo() {
+    CommandHistory.undo();
+  }
+
+  @Override
+  public void redo() {
+    CommandHistory.redo();
   }
 }

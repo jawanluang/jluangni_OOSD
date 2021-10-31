@@ -43,6 +43,19 @@ public class CommandController {
     }
   }
 
+  public void onCopy() {
+    CopyCommand copyCommand = new CopyCommand(picture);
+    copyCommand.run();
+    CommandHistory.add(copyCommand);
+  }
+
+  public void onPaste() {
+    PasteCommand pasteCommand = new PasteCommand(picture);
+    pasteCommand.run();
+    CommandHistory.add(pasteCommand);
+    paintCanvas.repaint();
+  }
+
   public void onRedo() {
     CommandHistory.redo();
     paintCanvas.repaint();

@@ -57,6 +57,10 @@ public class Ellipse implements IShape {
     begin = new Point(newX, newY);
   }
 
+  public IShape copy() {
+    return new Ellipse(region, userChoices);
+  }
+
   @Override
   public Point getStart() {
     return begin;
