@@ -32,12 +32,10 @@ public class Picture {
   }
 
   public void select(ArrayList<IShape> selectedShapes) {
-    if (selectContainer.isEmpty()) {
-      selectContainer.addAll(selectedShapes);
-    } else {
+    if (!selectContainer.isEmpty()) {
       selectContainer.clear();
-      selectContainer.addAll(selectedShapes);
     }
+    selectContainer.addAll(selectedShapes);
   }
 
   public ArrayList<IShape> getSelectShapes() {

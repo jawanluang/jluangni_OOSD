@@ -8,6 +8,8 @@ package controller.command;
 
 import controller.interfaces.ICommand;
 import controller.interfaces.Undoable;
+import model.RegionImpl;
+import model.interfaces.Region;
 import model.interfaces.UserChoices;
 import model.picture.Picture;
 import model.picture.Point;
@@ -32,10 +34,13 @@ public class CommandController {
   }
 
   public void onDraw(Point startPoint, Point endPoint) {
-    command = CommandFactory.makeCommand(startPoint, endPoint, userChoices, picture);
-    command.run();
-    CommandHistory.add((Undoable) command);
-    paintCanvas.repaint();
+    Region region = new RegionImpl(startPoint, endPoint);
+    command = CommandFactory.makeCommand(region, userChoices, picture);
+    if(command != null) {
+      command.run();
+      CommandHistory.add((Undoable) command);
+      paintCanvas.repaint();
+    }
   }
 
   public void onRedo() {

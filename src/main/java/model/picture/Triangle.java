@@ -11,6 +11,7 @@ import java.awt.Graphics2D;
 import model.DrawTriangle;
 import model.ShapeShadingType;
 import model.interfaces.IShape;
+import model.interfaces.Region;
 import model.interfaces.UserChoices;
 
 /**
@@ -21,8 +22,7 @@ import model.interfaces.UserChoices;
  * the class extracts the primary and secondary color of the shape.
  */
 public class Triangle implements IShape {
-  Point start;
-  Point end;
+  Region region;
   Color primary;
   Color secondary;
   int[] xPoints;
@@ -30,12 +30,10 @@ public class Triangle implements IShape {
   UserChoices userChoices;
   ShapeShadingType sst;
 
-  public Triangle(Point start, Point end, UserChoices userChoices) {
-    this.start = start;
-    this.end = end;
-    int halfX = (Math.max(start.getX(), end.getX()) - Math.min(start.getX(), end.getX()))/2;
-    xPoints = new int[]{Math.min(start.getX(), end.getX()), Math.min(start.getX(), end.getX()) + halfX, Math.max(start.getX(), end.getX())};
-    yPoints = new int[]{Math.max(start.getY(), end.getY()), Math.min(start.getY(), end.getY()), Math.max(start.getY(), end.getY())};
+  public Triangle(Region region, UserChoices userChoices) {
+    this.region = region;
+    xPoints = region.getXArray();
+    yPoints = region.getYArray();
 
     this.userChoices = userChoices;
     primary = userChoices.getActivePrimaryColor().value;
@@ -58,11 +56,11 @@ public class Triangle implements IShape {
 
   @Override
   public Point getStart() {
-    return start;
+    return region.getStartRegion();
   }
 
   @Override
   public Point getEnd() {
-    return end;
+    return region.getEndRegion();
   }
 }

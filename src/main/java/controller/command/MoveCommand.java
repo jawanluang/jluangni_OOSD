@@ -10,6 +10,7 @@ import controller.interfaces.ICommand;
 import controller.interfaces.Undoable;
 import java.util.ArrayList;
 import model.interfaces.IShape;
+import model.interfaces.Region;
 import model.picture.MoveShape;
 import model.picture.Picture;
 import model.picture.Point;
@@ -24,19 +25,19 @@ import model.picture.Point;
  */
 public class MoveCommand implements ICommand, Undoable {
   ArrayList<IShape> selectShapes;
-  Point moveX;
-  Point moveY;
+  Point start;
+  Point end;
   MoveShape ms;
 
-  public MoveCommand(Point x, Point y, Picture picture) {
-    moveX = x;
-    moveY = y;
+  public MoveCommand(Region region, Picture picture) {
+    start = region.getStart();
+    end = region.getEnd();
     selectShapes = picture.getSelectShapes();
   }
 
   @Override
   public void run() {
-    ms = new MoveShape(selectShapes, moveX, moveY);
+    ms = new MoveShape(selectShapes, start, end);
     ms.moveAll();
   }
 

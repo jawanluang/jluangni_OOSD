@@ -20,25 +20,17 @@ import model.picture.SelectShape;
  * adds it to SelectShape's list if it is contained in the region.
  */
 public class RegionImpl implements Region {
-  ArrayList<IShape> shapesDrawn;
   Point startRegion;
   Point endRegion;
-  SelectShape selectShape;
+  Point start;
+  Point end;
 
 
-  public RegionImpl(Point start, Point end, ArrayList<IShape> shapeList, SelectShape select) {
+  public RegionImpl(Point start, Point end) {
     startRegion = new Point(Math.min(start.getX(), end.getX()), Math.min(start.getY(), end.getY()));
     endRegion = new Point(Math.max(start.getX(), end.getX()), Math.max(start.getY(), end.getY()));
-    shapesDrawn = shapeList;
-    selectShape = select;
-  }
-
-  public void putSelectedShapes() {
-    for(IShape ishape: shapesDrawn) {
-      if(contains(ishape.getStart(), ishape.getEnd())) {
-        selectShape.addSelect(ishape);
-      }
-    }
+    this.start = start;
+    this.end = end;
   }
 
   @Override
@@ -65,5 +57,32 @@ public class RegionImpl implements Region {
       return true;
 
     return false;
+  }
+
+  public Point getStartRegion() {
+    return startRegion;
+  }
+
+  public Point getEndRegion() {
+    return endRegion;
+  }
+
+  public int[] getXArray() {
+    int halfX = (Math.max(startRegion.getX(), endRegion.getX()) - Math.min(startRegion.getX(), endRegion.getX()))/2;
+    int[] xPoints = new int[]{Math.min(startRegion.getX(), endRegion.getX()), Math.min(startRegion.getX(), endRegion.getX()) + halfX, Math.max(startRegion.getX(), endRegion.getX())};
+    return xPoints;
+  }
+
+  public int[] getYArray() {
+    int[] yPoints = new int[]{Math.max(startRegion.getY(), endRegion.getY()), Math.min(startRegion.getY(), endRegion.getY()), Math.max(startRegion.getY(), endRegion.getY())};
+    return yPoints;
+  }
+
+  public Point getStart(){
+    return start;
+  }
+
+  public Point getEnd() {
+    return end;
   }
 }

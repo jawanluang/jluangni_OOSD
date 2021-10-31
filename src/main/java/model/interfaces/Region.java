@@ -15,4 +15,10 @@ import model.picture.Point;
  */
 public interface Region {
   boolean contains(Point shapeStart, Point shapeEnd);
+  Point getStartRegion();
+  Point getEndRegion();
+  Point getStart();
+  Point getEnd();
+  int[] getXArray();
+  int[] getYArray();
 }

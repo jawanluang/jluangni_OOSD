@@ -7,6 +7,7 @@
 package controller.command;
 
 import controller.interfaces.ICommand;
+import model.interfaces.Region;
 import model.interfaces.UserChoices;
 import model.picture.Picture;
 import model.picture.Point;
@@ -24,22 +25,20 @@ import model.picture.ShapeFactory;
  */
 public class CreateShapesCommand implements ICommand, Undoable {
   IShape shape;
-  Point start;
-  Point end;
+  Region region;
   UserChoices userChoices;
   Picture picture;
 
 
-  public CreateShapesCommand(Point start, Point end, UserChoices userChoices, Picture picture) {
-    this.start = start;
-    this.end = end;
+  public CreateShapesCommand(Region region, UserChoices userChoices, Picture picture) {
+    this.region = region;
     this.userChoices = userChoices;
     this.picture = picture;
   }
 
   @Override
   public void run() {
-    shape = ShapeFactory.makeShape(start, end, userChoices);
+    shape = ShapeFactory.makeShape(region, userChoices);
     picture.add(shape);
   }
 

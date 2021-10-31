@@ -10,6 +10,7 @@ import controller.interfaces.ICommand;
 import java.util.ArrayList;
 import model.RegionImpl;
 import model.interfaces.IShape;
+import model.interfaces.Region;
 import model.picture.Picture;
 import model.picture.Point;
 import model.picture.SelectShape;
@@ -23,22 +24,19 @@ import model.picture.SelectShape;
  * method, it inserts the saved list into the picture's selected shapes' arraylist.
  */
 public class SelectCommand implements ICommand {
-  Point regionX;
-  Point regionY;
+  Region region;
   Picture picture;
   ArrayList<IShape> selectedShapes;
 
-  public SelectCommand(Point x, Point y, Picture picture){
-    regionX = x;
-    regionY = y;
+  public SelectCommand(Region region, Picture picture){
+    this.region = region;
     this.picture = picture;
   }
 
   @Override
   public void run() {
-    SelectShape selected = new SelectShape();
-    RegionImpl region = new RegionImpl(regionX, regionY, picture.getDrawnShapes(), selected);
-    region.putSelectedShapes();
+    SelectShape selected = new SelectShape (picture.getDrawnShapes(), region);
+    selected.addSelectedShapes();
     picture.select(selected.getSelectedShapes());
     selectedShapes = selected.getSelectedShapes();
   }

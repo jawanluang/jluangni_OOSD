@@ -8,6 +8,7 @@ package model.picture;
 
 import model.ShapeType;
 import model.interfaces.IShape;
+import model.interfaces.Region;
 import model.interfaces.UserChoices;
 
 /**
@@ -18,16 +19,16 @@ import model.interfaces.UserChoices;
  */
 public class ShapeFactory {
 
-  public static IShape makeShape(Point x, Point y, UserChoices userChoices) {
+  public static IShape makeShape(Region region, UserChoices userChoices) {
     ShapeType st = userChoices.getActiveShapeType();
 
     switch (st) {
       case RECTANGLE:
-        return new Rectangle(x, y, userChoices);
+        return new Rectangle(region, userChoices);
       case ELLIPSE:
-        return new Ellipse(x, y, userChoices);
+        return new Ellipse(region, userChoices);
       case TRIANGLE:
-        return new Triangle(x, y, userChoices);
+        return new Triangle(region, userChoices);
       default:
         System.out.println("No Shape found");
         break;

@@ -13,6 +13,7 @@ import model.DrawRectangle;
 import java.awt.Graphics2D;
 import model.ShapeShadingType;
 import model.interfaces.IShape;
+import model.interfaces.Region;
 import model.interfaces.UserChoices;
 
 /**
@@ -26,16 +27,18 @@ public class Rectangle implements IShape{
   int height, width;
   Color primary;
   Color secondary;
-  Point end;
   Point begin;
+  Point end;
+  Region region;
   UserChoices userChoices;
   ShapeShadingType sst;
 
-  public Rectangle(Point start, Point end, UserChoices userChoices) {
-    this.end = new Point(Math.max(start.getX(), end.getX()), Math.max(start.getY(), end.getY()));
-    begin = new Point(Math.min(start.getX(), end.getX()), Math.min(start.getY(), end.getY()));
-    height = Math.abs(start.getY() - end.getY());
-    width = Math.abs(start.getX() - end.getX());
+  public Rectangle(Region region, UserChoices userChoices) {
+    this.region = region;
+    end = region.getEndRegion();
+    begin = region.getStartRegion();
+    height = Math.abs(begin.getY() - end.getY());
+    width = Math.abs(begin.getX() - end.getX());
 
     this.userChoices = userChoices;
     primary = userChoices.getActivePrimaryColor().value;

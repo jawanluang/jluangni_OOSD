@@ -8,6 +8,7 @@ package controller.command;
 
 import controller.interfaces.ICommand;
 import model.MouseMode;
+import model.interfaces.Region;
 import model.interfaces.UserChoices;
 import model.picture.Picture;
 import model.picture.Point;
@@ -20,13 +21,13 @@ import model.picture.Point;
  */
 public class CommandFactory {
 
-  public static ICommand makeCommand(Point X, Point Y, UserChoices userChoices, Picture picture) {
+  public static ICommand makeCommand(Region region, UserChoices userChoices, Picture picture) {
     if (userChoices.getActiveMouseMode().equals(MouseMode.DRAW)) {
-      return new CreateShapesCommand(X, Y, userChoices, picture);
+      return new CreateShapesCommand(region, userChoices, picture);
     } else if (userChoices.getActiveMouseMode().equals(MouseMode.SELECT)) {
-      return new SelectCommand(X, Y, picture);
+      return new SelectCommand(region, picture);
     } else if (userChoices.getActiveMouseMode().equals(MouseMode.MOVE)) {
-      return new MoveCommand(X, Y, picture);
+      return new MoveCommand(region, picture);
     } else {
       return null;
     }
