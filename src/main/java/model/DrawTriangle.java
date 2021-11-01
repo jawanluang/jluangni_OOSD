@@ -26,14 +26,12 @@ public class DrawTriangle implements DrawStrategy {
   Color primary;
   Color secondary;
   Polygon triangle;
-  ShapeShadingType sst;
   int[] xPoints;
   int[] yPoints;
 
   @Override
   public void draw(Graphics2D graphics, IShape tri) {
     primary = tri.getPrimary();
-    sst = tri.getSst();
     xPoints = tri.getRegion().getXArray();
     yPoints = tri.getRegion().getYArray();
     graphics.setColor(primary);
@@ -42,7 +40,7 @@ public class DrawTriangle implements DrawStrategy {
   }
 
   @Override
-  public void drawOutline(Graphics2D graphics, IShape tri ) {
+  public void drawOutline(Graphics2D graphics, IShape tri) {
     secondary = tri.getSecondary();
     xPoints = tri.getRegion().getXArray();
     yPoints = tri.getRegion().getYArray();
@@ -54,6 +52,14 @@ public class DrawTriangle implements DrawStrategy {
 
   @Override
   public void drawSelect(Graphics2D graphics2D, IShape shape){
-
+    xPoints = shape.getRegion().getXArray();
+    yPoints = shape.getRegion().getYArray();
+    xPoints = new int[]{xPoints[0] - 8, xPoints[1], xPoints[2] + 8};
+    yPoints = new int[]{yPoints[0] + 5, yPoints[1] - 8, yPoints[2] + 5};
+    Stroke stroke = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0);
+    graphics2D.setStroke(stroke);
+    graphics2D.setColor(Color.DARK_GRAY);
+    triangle = new Polygon(xPoints, yPoints, NUM_SIDES);
+    graphics2D.drawPolygon(triangle);
   }
 }

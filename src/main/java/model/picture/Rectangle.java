@@ -28,8 +28,8 @@ public class Rectangle implements IShape{
   private final Color primary;
   private final Color secondary;
   private Point begin;
-  private final Point end;
-  private final Region region;
+  private Point end;
+  private Region region;
   private final UserChoices userChoices;
   private final ShapeShadingType sst;
   private DrawStrategy drawStrategy;
@@ -52,12 +52,18 @@ public class Rectangle implements IShape{
   }
 
   @Override
-  public void move(int x, int y) {
-    int newX = begin.getX() + x;
-    int newY = begin.getY() + y;
-    begin = new Point(newX, newY);
+  public void select(Graphics2D graphics2D){
+    drawStrategy.drawSelect(graphics2D, this);
   }
 
+  @Override
+  public void move(int x, int y) {
+    region.move(x, y);
+    end = region.getEndRegion();
+    begin = region.getStartRegion();
+  }
+
+  @Override
   public IShape copy() {
     return new Rectangle(region, userChoices, drawStrategy);
   }
@@ -72,22 +78,27 @@ public class Rectangle implements IShape{
     return end;
   }
 
+  @Override
   public Region getRegion() {
     return region;
   }
 
+  @Override
   public Color getPrimary() {
     return primary;
   }
 
+  @Override
   public Color getSecondary() {
     return secondary;
   }
 
+  @Override
   public ShapeShadingType getSst() {
     return sst;
   }
 
+  @Override
   public DrawStrategy getDrawStrategy() {
     return drawStrategy;
   }

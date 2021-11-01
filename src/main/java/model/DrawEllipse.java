@@ -9,6 +9,7 @@ package model;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Stroke;
 import java.awt.geom.Ellipse2D;
 import model.interfaces.DrawStrategy;
 import model.interfaces.IShape;
@@ -25,7 +26,6 @@ public class DrawEllipse implements DrawStrategy {
   Color secondary;
   Point origin;
   Ellipse2D el;
-  ShapeShadingType sst;
   int height, width;
 
   public void draw (Graphics2D graphics, IShape shape) {
@@ -54,6 +54,13 @@ public class DrawEllipse implements DrawStrategy {
 
   @Override
   public void drawSelect(Graphics2D graphics2D, IShape shape) {
-
+    origin = shape.getStart();
+    width = shape.getRegion().getWidth();
+    height = shape.getRegion().getHeight();
+    Stroke stroke = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0);
+    graphics2D.setStroke(stroke);
+    graphics2D.setColor(Color.DARK_GRAY);
+    el = new Ellipse2D.Double(origin.getX() - 5, origin.getY() - 5, width + 10, height + 10);
+    graphics2D.draw(el);
   }
 }

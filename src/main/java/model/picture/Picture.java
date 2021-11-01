@@ -56,7 +56,10 @@ public class Picture {
   }
 
   public void draw(Graphics2D graphics2D) {
-    for (IShape iShape : shapesContainer)
+    for (IShape iShape : shapesContainer) {
       iShape.draw(graphics2D);
+      if (selectContainer.contains(iShape))
+        iShape.getDrawStrategy().drawSelect(graphics2D, iShape);
+    }
   }
 }

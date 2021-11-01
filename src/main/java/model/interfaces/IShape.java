@@ -19,7 +19,8 @@ import model.picture.Point;
  * allows anyone to get the start and end point of a given shape.
  */
 public interface IShape {
-  void draw (Graphics2D graphics);
+  void draw(Graphics2D graphics);
+  void select(Graphics2D graphics2D);
   void move(int x, int y);
   IShape copy();
   Point getStart();

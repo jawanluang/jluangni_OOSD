@@ -6,6 +6,7 @@
  */
 package model;
 
+import java.awt.Stroke;
 import model.interfaces.DrawStrategy;
 import model.interfaces.IShape;
 import model.interfaces.UserChoices;
@@ -49,6 +50,12 @@ public class DrawRectangle implements DrawStrategy {
 
   @Override
   public void drawSelect(Graphics2D graphics2D, IShape shape) {
-
+    origin = shape.getStart();
+    width = shape.getRegion().getWidth();
+    height = shape.getRegion().getHeight();
+    Stroke stroke = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0);
+    graphics2D.setStroke(stroke);
+    graphics2D.setColor(Color.DARK_GRAY);
+    graphics2D.drawRect(origin.getX() - 5, origin.getY() - 5, width + 10, height + 10);
   }
 }

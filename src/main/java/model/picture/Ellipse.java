@@ -23,10 +23,10 @@ import model.interfaces.UserChoices;
  * the class extracts the primary and secondary color of the shape.
  */
 public class Ellipse implements IShape {
-  private final int height, width;
+  private int height, width;
   private final Color primary;
   private final Color secondary;
-  private final Point end;
+  private  Point end;
   private Point begin;
   private final Region region;
   private final UserChoices userChoices;
@@ -38,8 +38,8 @@ public class Ellipse implements IShape {
     this.region = region;
     end = region.getEndRegion();
     begin = region.getStartRegion();
-    height = Math.abs(begin.getY() - end.getY());
-    width = Math.abs(begin.getX() - end.getX());
+    height = region.getHeight();
+    width = region.getWidth();
     this.drawStrategy = drawStrategy;
 
     this.userChoices = userChoices;
@@ -54,12 +54,20 @@ public class Ellipse implements IShape {
   }
 
   @Override
-  public void move(int x, int y) {
-    int newX = begin.getX() + x;
-    int newY = begin.getY() + y;
-    begin = new Point(newX, newY);
+  public void select(Graphics2D graphics2D){
+    drawStrategy.drawSelect(graphics2D, this);
   }
 
+  @Override
+  public void move(int x, int y) {
+    region.move(x, y);
+    end = region.getEndRegion();
+    begin = region.getStartRegion();
+    height = region.getHeight();
+    width = region.getWidth();
+  }
+
+  @Override
   public IShape copy() {
     return new Ellipse(region, userChoices, drawStrategy);
   }
@@ -74,22 +82,27 @@ public class Ellipse implements IShape {
     return end;
   }
 
+  @Override
   public Region getRegion() {
     return region;
   }
 
+  @Override
   public Color getPrimary() {
     return primary;
   }
 
+  @Override
   public Color getSecondary() {
     return secondary;
   }
 
+  @Override
   public ShapeShadingType getSst() {
     return sst;
   }
 
+  @Override
   public DrawStrategy getDrawStrategy() {
     return drawStrategy;
   }

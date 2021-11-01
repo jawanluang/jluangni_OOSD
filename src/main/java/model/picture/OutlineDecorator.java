@@ -21,6 +21,11 @@ public class OutlineDecorator extends ShapeDecorator {
     setOutline(graphics, decoratedShape);
   }
 
+  @Override
+  public void select(Graphics2D graphics) {
+    decoratedShape.select(graphics);
+  }
+
   private void setOutline(Graphics2D graphics, IShape decoratedShape) {
     drawStrategy = decoratedShape.getDrawStrategy();
     drawStrategy.drawOutline(graphics, decoratedShape);
@@ -33,7 +38,8 @@ public class OutlineDecorator extends ShapeDecorator {
 
   @Override
   public IShape copy() {
-    return new OutlineDecorator(decoratedShape);
+    IShape newDecorShape = decoratedShape.copy();
+    return new OutlineDecorator(newDecorShape);
   }
 
   @Override

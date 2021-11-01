@@ -23,14 +23,14 @@ import model.interfaces.UserChoices;
  * the class extracts the primary and secondary color of the shape.
  */
 public class Triangle implements IShape {
-  private Region region;
-  private Color primary;
-  private Color secondary;
+  private final Region region;
+  private final Color primary;
+  private final Color secondary;
   private int[] xPoints;
   private int[] yPoints;
-  private UserChoices userChoices;
-  private ShapeShadingType sst;
-  private DrawStrategy drawStrategy;
+  private final UserChoices userChoices;
+  private final ShapeShadingType sst;
+  private final DrawStrategy drawStrategy;
 
   public Triangle(Region region, UserChoices userChoices, DrawStrategy drawStrategy) {
     this.region = region;
@@ -50,13 +50,18 @@ public class Triangle implements IShape {
   }
 
   @Override
-  public void move(int x, int y) {
-    for (int i = 0; i < xPoints.length; i++) {
-      xPoints[i] = xPoints[i] + x;
-      yPoints[i] = yPoints[i] + y;
-    }
+  public void select(Graphics2D graphics2D){
+    drawStrategy.drawSelect(graphics2D, this);
   }
 
+  @Override
+  public void move(int x, int y) {
+    region.move(x, y);
+    xPoints = region.getXArray();
+    yPoints = region.getYArray();
+  }
+
+  @Override
   public IShape copy() {
     return new Triangle(region, userChoices, drawStrategy);
   }
@@ -71,6 +76,7 @@ public class Triangle implements IShape {
     return region.getEndRegion();
   }
 
+  @Override
   public Region getRegion() {
     return region;
   }
@@ -80,14 +86,17 @@ public class Triangle implements IShape {
     return drawStrategy;
   }
 
+  @Override
   public Color getPrimary() {
     return primary;
   }
 
+  @Override
   public Color getSecondary() {
     return secondary;
   }
 
+  @Override
   public ShapeShadingType getSst() {
     return sst;
   }

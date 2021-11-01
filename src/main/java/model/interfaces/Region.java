@@ -23,4 +23,5 @@ public interface Region {
   int[] getYArray();
   int getHeight();
   int getWidth();
+  void move(int x, int y);
 }

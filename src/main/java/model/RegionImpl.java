@@ -93,4 +93,9 @@ public class RegionImpl implements Region {
   public Point getEnd() {
     return end;
   }
+
+  public void move(int x, int y) {
+    startRegion = new Point(startRegion.getX() + x, startRegion.getY() + y);
+    endRegion = new Point(endRegion.getX() + x, endRegion.getY() + y);
+  }
 }

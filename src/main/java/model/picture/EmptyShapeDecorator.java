@@ -20,6 +20,11 @@ public class EmptyShapeDecorator extends ShapeDecorator {
     setEmpty(graphics, decoratedShape);
   }
 
+  @Override
+  public void select(Graphics2D graphics) {
+    decoratedShape.select(graphics);
+  }
+
   private void setEmpty(Graphics2D graphics, IShape decoratedShape) {
     drawStrategy = decoratedShape.getDrawStrategy();
     drawStrategy.drawOutline(graphics, decoratedShape);
@@ -32,7 +37,8 @@ public class EmptyShapeDecorator extends ShapeDecorator {
 
   @Override
   public IShape copy() {
-    return new EmptyShapeDecorator(decoratedShape);
+    IShape newDecorShape = decoratedShape.copy();
+    return new EmptyShapeDecorator(newDecorShape);
   }
 
   @Override
