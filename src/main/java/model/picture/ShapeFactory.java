@@ -6,7 +6,12 @@
  */
 package model.picture;
 
+import model.DrawEllipse;
+import model.DrawRectangle;
+import model.DrawTriangle;
+import model.ShapeShadingType;
 import model.ShapeType;
+import model.interfaces.DrawStrategy;
 import model.interfaces.IShape;
 import model.interfaces.Region;
 import model.interfaces.UserChoices;
@@ -21,19 +26,35 @@ public class ShapeFactory {
 
   public static IShape makeShape(Region region, UserChoices userChoices) {
     ShapeType st = userChoices.getActiveShapeType();
+    ShapeShadingType shading = userChoices.getActiveShapeShadingType();
 
     switch (st) {
       case RECTANGLE:
-        return new Rectangle(region, userChoices);
+        if (shading == ShapeShadingType.FILLED_IN) {
+          return new Rectangle(region, userChoices, new DrawRectangle());
+        } else if (shading == ShapeShadingType.OUTLINE) {
+          return new EmptyShapeDecorator(new Rectangle(region, userChoices, new DrawRectangle()));
+        } else {
+          return new OutlineDecorator(new Rectangle(region, userChoices, new DrawRectangle()));
+        }
       case ELLIPSE:
-        return new Ellipse(region, userChoices);
+        if (shading == ShapeShadingType.FILLED_IN) {
+          return new Ellipse(region, userChoices, new DrawEllipse());
+        } else if (shading == ShapeShadingType.OUTLINE) {
+          return new EmptyShapeDecorator(new Ellipse(region, userChoices, new DrawEllipse()));
+        } else {
+          return new OutlineDecorator(new Ellipse(region, userChoices, new DrawEllipse()));
+        }
       case TRIANGLE:
-        return new Triangle(region, userChoices);
+        if (shading == ShapeShadingType.FILLED_IN) {
+          return new Triangle(region, userChoices, new DrawTriangle());
+        } else if (shading == ShapeShadingType.OUTLINE) {
+          return new EmptyShapeDecorator(new Triangle(region, userChoices, new DrawTriangle()));
+        } else {
+          return new OutlineDecorator(new Triangle(region, userChoices, new DrawTriangle()));
+        }
       default:
-        System.out.println("No Shape found");
-        break;
+        throw new IllegalArgumentException("Unknown ShapeType");
     }
-
-    return null;
   }
 }

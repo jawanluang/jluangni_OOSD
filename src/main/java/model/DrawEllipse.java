@@ -10,6 +10,8 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
+import model.interfaces.DrawStrategy;
+import model.interfaces.IShape;
 import model.interfaces.UserChoices;
 import model.picture.Point;
 
@@ -18,39 +20,40 @@ import model.picture.Point;
  * of a graphics object, Point object, integer for height, integer for width, and a Color object of
  * the primary color.
  */
-public class DrawEllipse {
+public class DrawEllipse implements DrawStrategy {
   Color primary;
   Color secondary;
+  Point origin;
   Ellipse2D el;
   ShapeShadingType sst;
+  int height, width;
 
-  public DrawEllipse (Graphics2D graphics, Point origin, int height, int width, Color primary, Color secondary, ShapeShadingType shapeShadingType) {
-    this.primary = primary;
-    this.secondary = secondary;
-    this.sst = shapeShadingType;
+  public void draw (Graphics2D graphics, IShape shape) {
+    primary = shape.getPrimary();
+    origin = shape.getStart();
+    width = shape.getRegion().getWidth();
+    height = shape.getRegion().getHeight();
+    graphics.setColor(primary);
+    el = new Ellipse2D.Double(origin.getX(), origin.getY(), width, height);
+    graphics.fill(el);
 
-    switch (sst) {
-      case FILLED_IN:
-        graphics.setColor(primary);
-        el = new Ellipse2D.Double(origin.getX(), origin.getY(), width, height);
-        graphics.fill(el);
-        break;
-      case OUTLINE:
-        graphics.setColor(secondary);
-        graphics.setStroke(new BasicStroke(5));
-        el = new Ellipse2D.Double(origin.getX(), origin.getY(), width, height);
-        graphics.draw(el);
-        break;
-      case OUTLINE_AND_FILLED_IN:
-        graphics.setColor(primary);
-        el = new Ellipse2D.Double(origin.getX(), origin.getY(), width, height);
-        graphics.fill(el);
-        graphics.setColor(secondary);
-        graphics.setStroke(new BasicStroke(5));
-        graphics.draw(el);
-        break;
-      default:
-        System.out.println("No shape shading type found.");
-    }
+
+  }
+
+  @Override
+  public void drawOutline(Graphics2D graphics, IShape ellipse) {
+    secondary = ellipse.getSecondary();
+    origin = ellipse.getStart();
+    width = ellipse.getRegion().getWidth();
+    height = ellipse.getRegion().getHeight();
+    graphics.setColor(secondary);
+    graphics.setStroke(new BasicStroke(5));
+    el = new Ellipse2D.Double(origin.getX(), origin.getY(), width, height);
+    graphics.draw(el);
+  }
+
+  @Override
+  public void drawSelect(Graphics2D graphics2D, IShape shape) {
+
   }
 }

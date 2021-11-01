@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import model.DrawTriangle;
 import model.ShapeShadingType;
+import model.interfaces.DrawStrategy;
 import model.interfaces.IShape;
 import model.interfaces.Region;
 import model.interfaces.UserChoices;
@@ -22,18 +23,20 @@ import model.interfaces.UserChoices;
  * the class extracts the primary and secondary color of the shape.
  */
 public class Triangle implements IShape {
-  Region region;
-  Color primary;
-  Color secondary;
-  int[] xPoints;
-  int[] yPoints;
-  UserChoices userChoices;
-  ShapeShadingType sst;
+  private Region region;
+  private Color primary;
+  private Color secondary;
+  private int[] xPoints;
+  private int[] yPoints;
+  private UserChoices userChoices;
+  private ShapeShadingType sst;
+  private DrawStrategy drawStrategy;
 
-  public Triangle(Region region, UserChoices userChoices) {
+  public Triangle(Region region, UserChoices userChoices, DrawStrategy drawStrategy) {
     this.region = region;
     xPoints = region.getXArray();
     yPoints = region.getYArray();
+    this.drawStrategy = drawStrategy;
 
     this.userChoices = userChoices;
     primary = userChoices.getActivePrimaryColor().value;
@@ -43,7 +46,7 @@ public class Triangle implements IShape {
 
   @Override
   public void draw(Graphics2D graphics) {
-    new DrawTriangle(graphics, xPoints, yPoints, primary, secondary, sst);
+    drawStrategy.draw(graphics, this);
   }
 
   @Override
@@ -55,7 +58,7 @@ public class Triangle implements IShape {
   }
 
   public IShape copy() {
-    return new Triangle(region, userChoices);
+    return new Triangle(region, userChoices, drawStrategy);
   }
 
   @Override
@@ -66,5 +69,26 @@ public class Triangle implements IShape {
   @Override
   public Point getEnd() {
     return region.getEndRegion();
+  }
+
+  public Region getRegion() {
+    return region;
+  }
+
+  @Override
+  public DrawStrategy getDrawStrategy() {
+    return drawStrategy;
+  }
+
+  public Color getPrimary() {
+    return primary;
+  }
+
+  public Color getSecondary() {
+    return secondary;
+  }
+
+  public ShapeShadingType getSst() {
+    return sst;
   }
 }

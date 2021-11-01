@@ -67,6 +67,14 @@ public class RegionImpl implements Region {
     return endRegion;
   }
 
+  public int getHeight() {
+    return Math.abs(startRegion.getY() - endRegion.getY());
+  }
+
+  public int getWidth() {
+    return Math.abs(startRegion.getX() - endRegion.getX());
+  }
+
   public int[] getXArray() {
     int halfX = (Math.max(startRegion.getX(), endRegion.getX()) - Math.min(startRegion.getX(), endRegion.getX()))/2;
     int[] xPoints = new int[]{Math.min(startRegion.getX(), endRegion.getX()), Math.min(startRegion.getX(), endRegion.getX()) + halfX, Math.max(startRegion.getX(), endRegion.getX())};

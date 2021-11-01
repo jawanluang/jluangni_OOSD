@@ -21,4 +21,6 @@ public interface Region {
   Point getEnd();
   int[] getXArray();
   int[] getYArray();
+  int getHeight();
+  int getWidth();
 }

@@ -6,7 +6,9 @@
  */
 package model.interfaces;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
+import model.ShapeShadingType;
 import model.picture.Point;
 
 /**
@@ -22,4 +24,9 @@ public interface IShape {
   IShape copy();
   Point getStart();
   Point getEnd();
+  Color getPrimary();
+  Color getSecondary();
+  ShapeShadingType getSst();
+  Region getRegion();
+  DrawStrategy getDrawStrategy();
 }

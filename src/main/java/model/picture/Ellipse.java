@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import model.DrawEllipse;
 import model.ShapeShadingType;
+import model.interfaces.DrawStrategy;
 import model.interfaces.IShape;
 import model.interfaces.Region;
 import model.interfaces.UserChoices;
@@ -22,22 +23,24 @@ import model.interfaces.UserChoices;
  * the class extracts the primary and secondary color of the shape.
  */
 public class Ellipse implements IShape {
-  int height, width;
-  Color primary;
-  Color secondary;
-  Point end;
-  Point begin;
-  Region region;
-  UserChoices userChoices;
-  ShapeShadingType sst;
+  private final int height, width;
+  private final Color primary;
+  private final Color secondary;
+  private final Point end;
+  private Point begin;
+  private final Region region;
+  private final UserChoices userChoices;
+  private final ShapeShadingType sst;
+  private DrawStrategy drawStrategy;
 
 
-  public Ellipse(Region region, UserChoices userChoices) {
+  public Ellipse(Region region, UserChoices userChoices, DrawStrategy drawStrategy) {
     this.region = region;
     end = region.getEndRegion();
     begin = region.getStartRegion();
     height = Math.abs(begin.getY() - end.getY());
     width = Math.abs(begin.getX() - end.getX());
+    this.drawStrategy = drawStrategy;
 
     this.userChoices = userChoices;
     primary = userChoices.getActivePrimaryColor().value;
@@ -47,7 +50,7 @@ public class Ellipse implements IShape {
 
   @Override
   public void draw(Graphics2D graphics) {
-    new DrawEllipse(graphics, begin, height, width, primary, secondary, sst);
+    drawStrategy.draw(graphics, this);
   }
 
   @Override
@@ -58,7 +61,7 @@ public class Ellipse implements IShape {
   }
 
   public IShape copy() {
-    return new Ellipse(region, userChoices);
+    return new Ellipse(region, userChoices, drawStrategy);
   }
 
   @Override
@@ -69,5 +72,25 @@ public class Ellipse implements IShape {
   @Override
   public Point getEnd() {
     return end;
+  }
+
+  public Region getRegion() {
+    return region;
+  }
+
+  public Color getPrimary() {
+    return primary;
+  }
+
+  public Color getSecondary() {
+    return secondary;
+  }
+
+  public ShapeShadingType getSst() {
+    return sst;
+  }
+
+  public DrawStrategy getDrawStrategy() {
+    return drawStrategy;
   }
 }
