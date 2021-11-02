@@ -18,7 +18,7 @@ import model.picture.Point;
 /**
  * The MoveCommand class implements the interfaces for ICommand and IUndoable.
  * (@see controller.interfaces.ICommand)
- * The MoveCommand takes in two Point objects and a Picture object. The class uses these fields to
+ * The MoveCommand takes in a Region and a Picture object. The class uses these fields to
  * create a MoveShape object that holds a composition relationship to the class. In the undo method,
  * it calls the reverseMove method of MakeShape. In the redo method, it recalls the moveAll method
  * from MakeShape.

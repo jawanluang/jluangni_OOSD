@@ -19,7 +19,7 @@ import model.picture.SelectShape;
 /**
  * The SelectCommand class implements the interfaces for ICommand and IUndoable.
  * (@see controller.interfaces.ICommand)
- * The SelectCommand class takes in two Point objects and a Picture object. The class uses these fields
+ * The SelectCommand class takes in a Region object and a Picture object. The class uses these fields
  * to create a SelectShape object and a RegionImpl that holds a composition relationship to the class.
  * In the undo method, it gets the picture's selected shapes arraylist and clears it. In the redo
  * method, it inserts the saved list into the picture's selected shapes' arraylist.

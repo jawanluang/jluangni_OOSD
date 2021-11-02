@@ -11,7 +11,6 @@ import model.DrawRectangle;
 import model.DrawTriangle;
 import model.ShapeShadingType;
 import model.ShapeType;
-import model.interfaces.DrawStrategy;
 import model.interfaces.IShape;
 import model.interfaces.Region;
 import model.interfaces.UserChoices;

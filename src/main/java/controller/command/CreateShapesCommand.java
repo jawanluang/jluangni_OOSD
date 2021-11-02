@@ -10,7 +10,6 @@ import controller.interfaces.ICommand;
 import model.interfaces.Region;
 import model.interfaces.UserChoices;
 import model.picture.Picture;
-import model.picture.Point;
 import controller.interfaces.Undoable;
 import model.interfaces.IShape;
 import model.picture.ShapeFactory;
@@ -18,8 +17,8 @@ import model.picture.ShapeFactory;
 /**
  * The CreateShapesCommand class implements the interfaces for ICommand and IUndoable.
  * (@see controller.interfaces.ICommand)
- * The class takes an input of two Point objects, a UserChoices object, a Picture object,
- * and a PaintCanvas object. In its run method it creates a new shape and adds it to Picture.
+ * The class takes an input of Region Object, a UserChoices object, a Picture object,
+ * and a UserChoices object. In its run method it creates a new shape and adds it to Picture.
  * In the class's redo and undo methods, it interacts with the Picture and calls the
  * PaintCanvas object to repaint the graphics.
  */

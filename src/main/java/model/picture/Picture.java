@@ -19,7 +19,6 @@ public class Picture {
   private final ArrayList<IShape> shapesContainer = new ArrayList<>();
   private final ArrayList<IShape> selectContainer = new ArrayList<>();
   private final ArrayList<IShape> copyContainer = new ArrayList<>();
-  public int pasteIterator = 0;
 
   public void add(IShape newShape){
     shapesContainer.add(newShape);

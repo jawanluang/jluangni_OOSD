@@ -54,7 +54,7 @@ public class DrawEllipse implements DrawStrategy {
 
   @Override
   public void drawSelect(Graphics2D graphics2D, IShape shape) {
-    origin = shape.getStart();
+    origin = shape.getRegion().getStartRegion();
     width = shape.getRegion().getWidth();
     height = shape.getRegion().getHeight();
     Stroke stroke = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0);

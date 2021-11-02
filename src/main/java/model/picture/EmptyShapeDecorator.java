@@ -1,3 +1,9 @@
+/*
+  SE 350 Fall 2021
+  Jawan Luangnikone Davis
+  Project Assignment 3: Sprint 3
+  11/2/2021
+ */
 package model.picture;
 
 import java.awt.Color;
@@ -8,6 +14,12 @@ import model.interfaces.IShape;
 import model.interfaces.Region;
 import model.interfaces.ShapeDecorator;
 
+/**
+ * The EmptyShapeDecorator extends ShapeDecorator (@see model.interfaces.ShapeDecorator) which implements
+ * IShape (@see model.interfaces.IShape).
+ * The EmptyShapeDecorator takes in an IShape and sets it as the decorated shape. In the setEmpty method,
+ * it gets the decorated shape's drawStrategy and calls the drawOutline method.
+ */
 public class EmptyShapeDecorator extends ShapeDecorator {
   DrawStrategy drawStrategy;
 
