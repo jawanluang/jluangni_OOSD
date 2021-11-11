@@ -14,9 +14,10 @@ import model.picture.Point;
 /**
  * The IShape interface presents an abstract template for Shape objects to follow.
  * The Shape objects that are included are Rectangles, Ellipses, and Triangles. The
- * abstract method draw interacts with the graphics system to draw the shape. the abstract method
- * move allows any package to change the origin point. the abstract method getStart and getEnd
- * allows anyone to get the start and end point of a given shape.
+ * abstract method draw interacts with the graphics system to draw the shape. The abstract method
+ * move allows any shape to change the origin point. There are various abstract getter methods that
+ * allows other classes to get information from the IShape. The method copy gives a new shape of the
+ * same likeness of the original.
  */
 public interface IShape {
   void draw(Graphics2D graphics);

@@ -13,13 +13,11 @@ import java.awt.Polygon;
 import java.awt.Stroke;
 import model.interfaces.DrawStrategy;
 import model.interfaces.IShape;
-import model.interfaces.UserChoices;
-import model.picture.Triangle;
 
 /**
+ * DrawTriangle implements DrwStrategy and uses all the abstract methods (@see model.interfaces.DrawStrategy)
  * The DrawTriangle class handles the rendering of the triangle shape. It takes an input
- * of a graphics object, Point object, integer for height, integer for width, and a Color object of
- * the primary color.
+ * of a graphics object and an IShape in all three functions.
  */
 public class DrawTriangle implements DrawStrategy {
   int NUM_SIDES = 3;

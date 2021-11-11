@@ -6,11 +6,10 @@
  */
 package model;
 
-import java.util.ArrayList;
-import model.interfaces.IShape;
+
 import model.interfaces.Region;
 import model.picture.Point;
-import model.picture.SelectShape;
+
 
 /**
  * RegionImpl is an implementation of the Region interface and follows the abstract methods

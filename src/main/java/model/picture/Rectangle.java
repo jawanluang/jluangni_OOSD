@@ -20,9 +20,9 @@ import model.interfaces.UserChoices;
 /**
  * This class implements the IShape interface and follows the abstract methods presented.
  * (@see model.interfaces.IShape)
- * The Rectangle class takes two Point objects and a UserChoices object as an input. Using the
- * Point objects to create an origin and dimensions for the shape. With the UserChoices object,
- * the class extracts the primary and secondary color of the shape.
+ * The Rectangle class takes a Region, DrawStrategy object, and a UserChoices object as an input. Using the
+ * Region object to create an origin and dimensions for the shape. With the UserChoices object,
+ * the class extracts the primary and secondary color of the shape. Using the DrawStrategy to draw the shape.
  */
 public class Rectangle implements IShape{
   private final Color primary;

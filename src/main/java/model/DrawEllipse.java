@@ -13,13 +13,12 @@ import java.awt.Stroke;
 import java.awt.geom.Ellipse2D;
 import model.interfaces.DrawStrategy;
 import model.interfaces.IShape;
-import model.interfaces.UserChoices;
 import model.picture.Point;
 
 /**
- * The DrawEllipse class handles the rendering of the ellipse shape. It takes an input
- * of a graphics object, Point object, integer for height, integer for width, and a Color object of
- * the primary color.
+ * DrawEllipse implements DrwStrategy and uses all the abstract methods (@see model.interfaces.DrawStrategy)
+ * The DrawEllipse class handles the rendering of the triangle shape. It takes an input
+ * of a graphics object and an IShape in all three functions.
  */
 public class DrawEllipse implements DrawStrategy {
   Color primary;

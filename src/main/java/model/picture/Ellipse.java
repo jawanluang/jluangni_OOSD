@@ -18,9 +18,9 @@ import model.interfaces.UserChoices;
 /**
  * This class implements the IShape interface and follows the abstract methods presented.
  * (@see model.interfaces.IShape)
- * The Ellipse class takes two Point objects and a UserChoices object as an input. Using the
- * Point objects to create an origin and dimensions for the shape. With the UserChoices object,
- * the class extracts the primary and secondary color of the shape.
+ * The Ellipse class takes a Region, DrawStrategy object, and a UserChoices object as an input. Using the
+ * Region object to create an origin and dimensions for the shape. With the UserChoices object,
+ * the class extracts the primary and secondary color of the shape. Using the DrawStrategy to draw the shape.
  */
 public class Ellipse implements IShape {
   private int height, width;

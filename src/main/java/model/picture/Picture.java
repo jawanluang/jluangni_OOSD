@@ -11,8 +11,9 @@ import java.util.ArrayList;
 import model.interfaces.IShape;
 
 /**
- * The Picture class contains an ArrayList of IShape objects. The class has an add and remove method
- * that allows the ArrayList to be available outside the class. This class also has a draw method,
+ * The Picture class contains ArrayLists of IShape objects. Each ArrayList has an add and get method
+ * that allows the ArrayList to be available outside the class. The drawnShapes in shape container
+ * can be removed with the public method remove. This class also has a draw method,
  * which loops through all the shapes in the ArrayList and calls the draw method to create a picture.
  */
 public class Picture {

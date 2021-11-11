@@ -9,17 +9,15 @@ package model;
 import java.awt.Stroke;
 import model.interfaces.DrawStrategy;
 import model.interfaces.IShape;
-import model.interfaces.UserChoices;
 import model.picture.Point;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import model.picture.Rectangle;
 
 /**
- * The DrawRectangle class handles the rendering of the rectangle shape. It takes an input
- * of a graphics object, Point object, integer for height, integer for width, Color object of
- * the primary, and a Color object of the secondary.
+ * DrawRectangle implements DrwStrategy and uses all the abstract methods (@see model.interfaces.DrawStrategy)
+ * The DrawRectangle class handles the rendering of the triangle shape. It takes an input
+ * of a graphics object and an IShape in all three functions.
  */
 public class DrawRectangle implements DrawStrategy {
   Color primary;
