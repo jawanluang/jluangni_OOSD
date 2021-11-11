@@ -35,5 +35,6 @@ public class EventConnectorImpl implements EventConnector {
         uiModule.addEvent(EventName.REDO, () -> cmdController.onRedo());
         uiModule.addEvent(EventName.COPY, () -> cmdController.onCopy());
         uiModule.addEvent(EventName.PASTE, () -> cmdController.onPaste());
+        uiModule.addEvent(EventName.DELETE, () -> cmdController.onDelete());
     }
 }

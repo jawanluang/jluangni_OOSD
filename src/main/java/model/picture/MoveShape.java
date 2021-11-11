@@ -9,6 +9,12 @@ package model.picture;
 import java.util.ArrayList;
 import model.interfaces.IShape;
 
+/**
+ * The MoveShape class takes in an ArrayList of IShapes and two Point objects that reference the start
+ * and end of the current mouse release. Iterating through the shape list, it calls the move method of the individual
+ * shapes in the moveAll function. In the reverseMove method, it uses the inverse of the change and calls the move
+ * method of the individual shapes.
+ */
 public class MoveShape {
   ArrayList<IShape> shapeList;
   int changeX;

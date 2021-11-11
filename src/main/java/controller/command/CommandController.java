@@ -56,6 +56,13 @@ public class CommandController {
     paintCanvas.repaint();
   }
 
+  public void onDelete() {
+    DeleteCommand deleteCommand = new DeleteCommand(picture);
+    deleteCommand.run();
+    CommandHistory.add(deleteCommand);
+    paintCanvas.repaint();
+  }
+
   public void onRedo() {
     CommandHistory.redo();
     paintCanvas.repaint();
