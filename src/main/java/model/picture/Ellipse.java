@@ -8,7 +8,6 @@ package model.picture;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import model.DrawEllipse;
 import model.ShapeShadingType;
 import model.interfaces.DrawStrategy;
 import model.interfaces.IShape;
@@ -23,7 +22,6 @@ import model.interfaces.UserChoices;
  * the class extracts the primary and secondary color of the shape. Using the DrawStrategy to draw the shape.
  */
 public class Ellipse implements IShape {
-  private int height, width;
   private final Color primary;
   private final Color secondary;
   private  Point end;
@@ -38,8 +36,6 @@ public class Ellipse implements IShape {
     this.region = region;
     end = region.getEndRegion();
     begin = region.getStartRegion();
-    height = region.getHeight();
-    width = region.getWidth();
     this.drawStrategy = drawStrategy;
 
     this.userChoices = userChoices;
@@ -63,8 +59,6 @@ public class Ellipse implements IShape {
     region.move(x, y);
     end = region.getEndRegion();
     begin = region.getStartRegion();
-    height = region.getHeight();
-    width = region.getWidth();
   }
 
   @Override

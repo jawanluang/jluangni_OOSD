@@ -8,7 +8,6 @@ package model.picture;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import model.DrawTriangle;
 import model.ShapeShadingType;
 import model.interfaces.DrawStrategy;
 import model.interfaces.IShape;
@@ -26,16 +25,12 @@ public class Triangle implements IShape {
   private final Region region;
   private final Color primary;
   private final Color secondary;
-  private int[] xPoints;
-  private int[] yPoints;
   private final UserChoices userChoices;
   private final ShapeShadingType sst;
   private final DrawStrategy drawStrategy;
 
   public Triangle(Region region, UserChoices userChoices, DrawStrategy drawStrategy) {
     this.region = region;
-    xPoints = region.getXArray();
-    yPoints = region.getYArray();
     this.drawStrategy = drawStrategy;
 
     this.userChoices = userChoices;
@@ -57,8 +52,6 @@ public class Triangle implements IShape {
   @Override
   public void move(int x, int y) {
     region.move(x, y);
-    xPoints = region.getXArray();
-    yPoints = region.getYArray();
   }
 
   @Override

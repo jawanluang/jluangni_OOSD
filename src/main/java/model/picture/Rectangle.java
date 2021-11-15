@@ -6,10 +6,7 @@
  */
 package model.picture;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Stroke;
-import model.DrawRectangle;
 import java.awt.Graphics2D;
 import model.ShapeShadingType;
 import model.interfaces.DrawStrategy;
